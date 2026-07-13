@@ -19,12 +19,12 @@ export default defineConfig({
         scope: '/budget-app/',
         icons: [
           {
-            src: 'ledger-logo-light-small.png',
+            src: 'ledger-logo-dark-small.png',
             sizes: '192x192',
             type: 'image/png'
           },
           {
-            src: 'ledger-logo-light-medium.png',
+            src: 'ledger-logo-dark-medium.png',
             sizes: '512x512',
             type: 'image/png'
           }
