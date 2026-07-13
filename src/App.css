@@ -1,0 +1,579 @@
+@import url('https://fonts.googleapis.com/css2?family=Source+Serif+4:opsz,wght@8..60,500;8..60,700&family=IBM+Plex+Mono:wght@400;500;600&family=Inter:wght@400;500;600&display=swap');
+
+:root {
+  --bg: #F5F3EE;
+  --surface: #FFFFFF;
+  --ink: #1C2530;
+  --ink-muted: #5B6472;
+  --border: #DDD8CC;
+  --accent: #0F6E5C;
+  --accent-hover: #0B5748;
+  --accent-soft: #E4EFEC;
+  --danger: #A6341C;
+  --danger-soft: #F6E5DF;
+  --warning: #92600A;
+  --warning-soft: #F6ECD9;
+  --radius: 8px;
+  --font-display: 'Source Serif 4', serif;
+  --font-body: 'Inter', -apple-system, sans-serif;
+  --font-mono: 'IBM Plex Mono', monospace;
+}
+
+* {
+  box-sizing: border-box;
+}
+
+body {
+  margin: 0;
+  background: var(--bg);
+  color: var(--ink);
+  font-family: var(--font-body);
+}
+
+.app-shell {
+  max-width: 920px;
+  margin: 0 auto;
+  padding: 32px 24px 64px;
+}
+
+.app-header {
+  border-bottom: 2px solid var(--ink);
+  padding-bottom: 16px;
+  margin-bottom: 20px;
+}
+
+.app-title {
+  font-family: var(--font-display);
+  font-size: 2.25rem;
+  font-weight: 700;
+  margin: 0;
+  letter-spacing: -0.01em;
+}
+
+.app-subtitle {
+  color: var(--ink-muted);
+  font-size: 0.875rem;
+  margin: 4px 0 0;
+  font-family: var(--font-mono);
+  letter-spacing: 0.02em;
+}
+
+.tab-nav {
+  display: flex;
+  gap: 4px;
+  overflow-x: auto;
+  margin-bottom: 24px;
+  border-bottom: 1px solid var(--border);
+}
+
+.tab-btn {
+  background: none;
+  border: none;
+  padding: 10px 14px;
+  font-family: var(--font-body);
+  font-size: 0.875rem;
+  font-weight: 500;
+  color: var(--ink-muted);
+  cursor: pointer;
+  white-space: nowrap;
+  border-bottom: 2px solid transparent;
+  margin-bottom: -1px;
+}
+
+.tab-btn.active {
+  color: var(--accent);
+  border-bottom-color: var(--accent);
+}
+
+.page {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+}
+
+.card {
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: var(--radius);
+  padding: 20px;
+}
+
+.card h3 {
+  font-family: var(--font-display);
+  font-size: 1.125rem;
+  margin: 0 0 12px;
+}
+
+.muted {
+  color: var(--ink-muted);
+  font-size: 0.875rem;
+}
+
+.grid-2 {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 20px;
+}
+
+@media (max-width: 700px) {
+  .grid-2 { grid-template-columns: 1fr; }
+}
+
+/* Forms */
+.form-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+  gap: 14px;
+  align-items: end;
+}
+
+.form-grid input,
+.form-grid select {
+  width: 100%;
+  min-width: 0;
+  padding: 8px 10px;
+  border: 1px solid var(--border);
+  border-radius: 6px;
+  font-family: var(--font-body);
+  font-size: 0.875rem;
+  background: var(--surface);
+  color: var(--ink);
+  box-sizing: border-box;
+}
+
+/* Structured field labels (label text + input stacked vertically) */
+.form-grid label:not(.checkbox-label) {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+  font-size: 0.8rem;
+  color: var(--ink-muted);
+  line-height: 1.3;
+}
+
+.field-label {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+  font-size: 0.8rem;
+  color: var(--ink-muted);
+  line-height: 1.3;
+}
+
+/* Checkbox labels need higher specificity than ".form-grid label" above,
+   otherwise that rule's column layout + 4px gap squeezes the checkbox and
+   its text together — this was the "help text leaking over" bug. */
+.form-grid .checkbox-label,
+.checkbox-label {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  gap: 8px;
+  font-size: 0.875rem;
+  color: var(--ink);
+  white-space: nowrap;
+}
+
+.computed-hint {
+  font-family: var(--font-mono);
+  font-size: 0.8rem;
+  color: var(--accent);
+  align-self: center;
+}
+
+.section-heading {
+  font-family: var(--font-display);
+  font-size: 1rem;
+  margin: 20px 0 10px;
+}
+
+.badge {
+  display: inline-block;
+  padding: 3px 9px;
+  border-radius: 999px;
+  font-size: 0.75rem;
+  white-space: nowrap;
+}
+
+.badge-info {
+  background: var(--accent-soft);
+  color: var(--accent);
+}
+
+.badge-neutral {
+  background: var(--bg);
+  color: var(--ink-muted);
+  border: 1px solid var(--border);
+}
+
+.badge-stack {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+}
+
+.form-hint {
+  grid-column: 1 / -1;
+  margin: 0;
+}
+
+.deferred-row {
+  color: var(--ink-muted);
+  font-style: italic;
+}
+
+.btn-primary, .btn-secondary {
+  padding: 9px 16px;
+  border-radius: 6px;
+  font-size: 0.875rem;
+  font-weight: 500;
+  cursor: pointer;
+  border: 1px solid transparent;
+}
+
+.btn-primary {
+  background: var(--accent);
+  color: white;
+}
+
+.btn-primary:hover {
+  background: var(--accent-hover);
+}
+
+.btn-secondary {
+  background: var(--surface);
+  border-color: var(--border);
+  color: var(--ink);
+  display: inline-block;
+}
+
+/* Tables */
+.data-table {
+  width: 100%;
+  border-collapse: collapse;
+  font-size: 0.875rem;
+}
+
+.data-table.small {
+  font-size: 0.75rem;
+  max-height: 300px;
+  display: block;
+  overflow-y: auto;
+}
+
+.data-table th {
+  text-align: left;
+  font-size: 0.7rem;
+  text-transform: uppercase;
+  letter-spacing: 0.04em;
+  color: var(--ink-muted);
+  padding-bottom: 8px;
+  border-bottom: 1px solid var(--border);
+}
+
+.data-table td {
+  padding: 8px 6px;
+  border-bottom: 1px solid var(--border);
+}
+
+.data-table .num {
+  font-family: var(--font-mono);
+  text-align: right;
+}
+
+.data-table .cap {
+  text-transform: capitalize;
+}
+
+.btn-link {
+  background: none;
+  border: none;
+  cursor: pointer;
+  font-size: 0.8rem;
+  padding: 0;
+  margin-right: 10px;
+  font-family: var(--font-body);
+}
+
+.btn-link.view { color: var(--accent); }
+.btn-link.delete { color: var(--danger); }
+
+.empty-state {
+  color: var(--ink-muted);
+  font-size: 0.875rem;
+  font-style: italic;
+}
+
+/* Quick add */
+.quick-add {
+  display: flex;
+  gap: 8px;
+  align-items: center;
+  flex-wrap: wrap;
+}
+
+.quick-add-input {
+  flex: 1;
+  min-width: 220px;
+  padding: 10px 12px;
+  border: 1px solid var(--border);
+  border-radius: 6px;
+  font-size: 0.9rem;
+}
+
+.quick-add-error {
+  color: var(--danger);
+  font-size: 0.8rem;
+}
+
+.template-bar {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+  margin-top: 12px;
+}
+
+.template-chip {
+  background: var(--accent-soft);
+  border: 1px solid var(--accent);
+  color: var(--accent);
+  border-radius: 999px;
+  padding: 5px 12px;
+  font-size: 0.8rem;
+  cursor: pointer;
+}
+
+/* Stat cards */
+.stat-cards {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 12px;
+}
+
+@media (max-width: 700px) {
+  .stat-cards { grid-template-columns: repeat(2, 1fr); }
+}
+
+.stat-card {
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: var(--radius);
+  padding: 16px;
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+}
+
+.stat-label {
+  font-size: 0.75rem;
+  color: var(--ink-muted);
+  text-transform: uppercase;
+  letter-spacing: 0.03em;
+}
+
+.stat-value {
+  font-family: var(--font-mono);
+  font-size: 1.375rem;
+  font-weight: 600;
+}
+
+.stat-value.negative, .num.negative { color: var(--danger); }
+.stat-value.positive, .num.positive { color: var(--accent); }
+
+/* Alerts */
+.alert-stack {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.alert {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 10px 14px;
+  border-radius: 6px;
+  font-size: 0.875rem;
+  border: 1px solid transparent;
+}
+
+.alert-danger {
+  background: var(--danger-soft);
+  color: var(--danger);
+  border-color: var(--danger);
+}
+
+.alert-warning {
+  background: var(--warning-soft);
+  color: var(--warning);
+  border-color: var(--warning);
+}
+
+.alert-info {
+  background: var(--accent-soft);
+  color: var(--accent);
+  border-color: var(--accent);
+}
+
+.alert-dismiss {
+  background: none;
+  border: none;
+  font-size: 1.1rem;
+  cursor: pointer;
+  color: inherit;
+  line-height: 1;
+}
+
+/* Cash flow */
+.cashflow-summary {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+}
+
+.cashflow-row {
+  display: flex;
+  justify-content: space-between;
+  padding: 6px 0;
+  border-bottom: 1px solid var(--border);
+  font-size: 0.9rem;
+}
+
+.cashflow-row .num {
+  font-family: var(--font-mono);
+}
+
+.cashflow-total {
+  font-weight: 600;
+  border-bottom: none;
+  border-top: 2px solid var(--ink);
+  padding-top: 10px;
+  margin-top: 4px;
+}
+
+/* Scenario panel */
+.scenario-controls {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+  margin-bottom: 20px;
+}
+
+.scenario-controls label {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+  font-size: 0.875rem;
+}
+
+.scenario-controls input[type="range"] {
+  width: 100%;
+}
+
+.scenario-compare {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 16px;
+}
+
+.scenario-column {
+  padding: 14px;
+  border: 1px solid var(--border);
+  border-radius: var(--radius);
+  font-size: 0.875rem;
+}
+
+.scenario-column h4 {
+  margin: 0 0 8px;
+  font-family: var(--font-display);
+}
+
+.scenario-highlight {
+  border-color: var(--accent);
+  background: var(--accent-soft);
+}
+
+.scenario-column p {
+  margin: 4px 0;
+  font-family: var(--font-mono);
+  font-size: 0.8rem;
+}
+
+.scenario-column .positive { color: var(--accent); }
+.scenario-column .negative { color: var(--danger); }
+
+/* CSV import */
+.import-status {
+  font-size: 0.8rem;
+  color: var(--accent);
+  margin-top: 8px;
+}
+
+.import-block {
+  margin-top: 14px;
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+  align-items: flex-start;
+}
+
+.date-range-controls {
+  display: flex;
+  gap: 16px;
+  margin-bottom: 14px;
+  flex-wrap: wrap;
+}
+
+.inline-add {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+}
+
+.inline-add-input {
+  width: 90px;
+  padding: 4px 6px;
+  border: 1px solid var(--border);
+  border-radius: 4px;
+  font-size: 0.8rem;
+  font-family: var(--font-mono);
+}
+
+.inline-edit-block {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
+  align-items: end;
+  background: var(--bg);
+  padding: 10px;
+  border-radius: 6px;
+  margin-top: 6px;
+}
+
+details summary {
+  cursor: pointer;
+  font-size: 0.8rem;
+  color: var(--ink-muted);
+  margin-top: 10px;
+}
+
+.income-form {
+  display: flex;
+  flex-direction: column;
+  gap: 14px;
+}
+
+.form-section {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  padding-top: 12px;
+  border-top: 1px dashed var(--border);
+}
+
+.computed-hint-block {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+  justify-content: flex-end;
+}
