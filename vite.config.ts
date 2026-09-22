@@ -4,6 +4,10 @@ import { VitePWA } from 'vite-plugin-pwa'
 
 export default defineConfig({
   base: '/budget-app/',
+  build: {
+    outDir: "dist/budget-app",
+    emptyOutDir: true,
+  },
   plugins: [
     react(),
     VitePWA({
